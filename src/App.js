@@ -17,7 +17,7 @@ function App() {
     }
 
     try{
-      const res = await axios.post('http://localhost:4000/api/item', {item: itemText})
+      const res = await axios.post('https://todo-list-server-dw4g.onrender.com/api/item', {item: itemText})
       setListItems(prev => [...prev, res.data]);
       setItemText('');
     }catch(err){
@@ -29,7 +29,7 @@ function App() {
   useEffect(()=>{
     const getItemsList = async () => {
       try{
-        const res = await axios.get('http://localhost:4000/api/items')
+        const res = await axios.get('https://todo-list-server-dw4g.onrender.com/api/items')
         setListItems(res.data);
         console.log('render')
       }catch(err){
@@ -42,7 +42,7 @@ function App() {
   // Delete item when click on delete
   const deleteItem = async (id) => {
     try{
-      const res = await axios.delete(`http://localhost:4000/api/item/${id}`)
+      const res = await axios.delete(`https://todo-list-server-dw4g.onrender.com/api/item/${id}`)
       const newListItems = listItems.filter(item=> item._id !== id);
       setListItems(newListItems);
     }catch(err){
@@ -54,7 +54,7 @@ function App() {
   const updateItem = async (e) => {
     e.preventDefault()
     try{
-      const res = await axios.put(`http://localhost:4000/api/item/${isUpdating}`, {item: updateItemText})
+      const res = await axios.put(`https://todo-list-server-dw4g.onrender.com/api/item/${isUpdating}`, {item: updateItemText})
       console.log(res.data)
       const updatedItemIndex = listItems.findIndex(item => item._id === isUpdating);
       const updatedItem = listItems[updatedItemIndex].item = updateItemText;
